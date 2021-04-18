@@ -24,12 +24,12 @@
 
 ### 使用指南描述
 
-- 此仓库为了方便模块复用，采用动态导入的形式链接各函数，[示例文件](https://github.com/EASY-EAI/EASY-EAI-NetHub/luanch_script/config/classification_mnist.yaml)
-- 动态导入的解析规则说明，[这里](https://github.com/EASY-EAI/EASY-EAI-NetHub/luanch_script/config/解析工具说明)
+- 此仓库为了方便模块复用，采用动态导入的形式链接各函数，[示例文件](https://github.com/EASY-EAI/EASY-EAI-NetHub/tree/master/luanch_script/config/classification_mnist.yaml)
+- 动态导入的解析规则说明，[这里](https://github.com/EASY-EAI/EASY-EAI-NetHub/tree/master/luanch_script/config/解析工具说明)
 - 模型适配边缘端处理。目前主要适配瑞星微硬件上的 npu 处理器。
 - 主要包含 图像分类、物体检测、图像分割、关键点定位 的神经网络模型。
 - 提供模型训练结果参考。
-- 提供常用模块，如 [框型标注]((https://github.com/EASY-EAI/EASY-EAI-NetHub/module_lib/image_process_tool/boundingbox_tools.py))、[关键点标注](https://github.com/EASY-EAI/EASY-EAI-NetHub/module_lib/image_process_tool/keypoint_tools.py)、[分割图标注](https://github.com/EASY-EAI/EASY-EAI-NetHub/module_lib/image_process_tool/pixel_label_tools.py)的数据增强等功能。
+- 提供常用模块，如 [框型标注](https://github.com/EASY-EAI/EASY-EAI-NetHub/tree/master/module_lib/image_process_tool/boundingbox_tools.py)、[关键点标注](https://github.com/EASY-EAI/EASY-EAI-NetHub/tree/master/module_lib/image_process_tool/keypoint_tools.py)、[分割图标注](https://github.com/EASY-EAI/EASY-EAI-NetHub/tree/master/module_lib/image_process_tool/pixel_label_tools.py)的数据增强等功能。
 
 
 
