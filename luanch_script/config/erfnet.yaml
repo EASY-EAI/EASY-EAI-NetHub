@@ -1,0 +1,87 @@
+global_batch_size: &global_batch_size 3
+# device: &device cpu
+device: &device 'cuda:0'
+max_epoch: 10
+weight_decay: &weight_decay 0.00001
+
+dynamic_parsing_part:
+  input_data: &input_data
+    parser_element: ['train_loader', 'eval_loader', 'class_number', 'dataset']
+    parser_rule:
+      define_file_path: data_process.data_loader_labelme
+      run_key: get_labelme_loader_from_path
+    parameters:
+      data_dir_path: G:\data\Lift_car\lift_car_pixel_label
+      batch_size: *global_batch_size
+      split_rate: 0.05
+      img_format: 'jpg'
+      down_sample: False
+      random_transform: True
+      mosaic_transform: True
+      class_color: [[0, 0, 128], [0, 128, 0]]
+      resize_rate: [0.25, 0.25]
+      output_size: [216, 384]
+    implicit_parameters: null
+
+
+  model: &model
+    parser_element: ['model'] 
+    parser_rule:
+      define_file_path: base_model.unet.erfnet_origin
+      run_key: Net
+    parameters:
+      num_classes: 3
+      encoder: null
+
+
+  loss_function: &loss_function
+    parser_element: ['loss_function']
+    parser_rule:
+      define_file_path: loss.normal_loss
+      run_key: CrossEntropyLoss2d
+    parameters: null
+
+
+  get_model_param: &get_model_param
+    parser_element: ['params']
+    parser_rule:
+      define_file_path: utils.get_model_param
+      run_key: _get_model_param
+    parameters: 
+      weight_decay_list: [*weight_decay]
+    implicit_parameters: 
+    implicit_parameters_args: ['model']
+
+  optimizer: &optimizer
+    parser_element: ['optimizer']
+    parser_rule:
+      define_file_path:  torch.optim
+      run_key: Adam
+    parameters: 
+      lr: 0.0001
+      # betas: (0.9,0.999)
+      weight_decay: *weight_decay
+    implicit_parameters: ['params']
+
+
+  lr_scheduler: &lr_scheduler
+    parser_element: ['lr_scheduler']
+    parser_rule:
+      define_file_path: torch.optim.lr_scheduler
+      run_key: MultiStepLR
+    parameters:
+      milestones: [20, 40]
+      gamma: 0.1
+      last_epoch: -1
+    implicit_parameters: ['optimizer']
+
+
+  model_script: &model_script
+    parser_element: ['model_script']
+    parser_rule: 
+      define_file_path: integration_model_script.erfnet_script_segment
+      run_key: erfnet_script
+    parameters: 
+      device: *device
+    implicit_parameters: ['model','loss_function','train_loader','eval_loader','optimizer', 'lr_scheduler']
+

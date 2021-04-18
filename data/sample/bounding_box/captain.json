@@ -1,0 +1,58 @@
+{
+  "signed": "zen_V1.0.0",
+  "flags": {},
+  "imagePath": "./data/sample/bounding_box/captain.jpg",
+  "imageData": null,
+  "imageHeight": 1465.0,
+  "imageWidth": 822.0,
+  "shapes": [
+    {
+      "label": 1,
+      "points": [
+        [
+          159.0,
+          185.0
+        ],
+        [
+          771.0,
+          1218.0
+        ]
+      ],
+      "group_id": null,
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": 3,
+      "points": [
+        [
+          315.0,
+          1060.0
+        ],
+        [
+          513.0,
+          1195.0
+        ]
+      ],
+      "group_id": null,
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": 8,
+      "points": [
+        [
+          2.0,
+          1251.0
+        ],
+        [
+          808.0,
+          1391.0
+        ]
+      ],
+      "group_id": null,
+      "shape_type": "rectangle",
+      "flags": {}
+    }
+  ]
+}

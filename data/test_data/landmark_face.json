@@ -1,0 +1,94 @@
+{
+  "version": "4.5.6",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "left_eye_left",
+      "points": [
+        [
+          54.54437869822485,
+          55.4240631163708
+        ]
+      ],
+      "group_id": null,
+      "shape_type": "point",
+      "flags": {}
+    },
+    {
+      "label": "left_eye_right",
+      "points": [
+        [
+          96.55621301775147,
+          54.437869822485204
+        ]
+      ],
+      "group_id": null,
+      "shape_type": "point",
+      "flags": {}
+    },
+    {
+      "label": "right_eye_left",
+      "points": [
+        [
+          156.1222879684418,
+          50.88757396449704
+        ]
+      ],
+      "group_id": null,
+      "shape_type": "point",
+      "flags": {}
+    },
+    {
+      "label": "right_eye_right",
+      "points": [
+        [
+          193.59763313609466,
+          47.53451676528599
+        ]
+      ],
+      "group_id": null,
+      "shape_type": "point",
+      "flags": {}
+    },
+    {
+      "label": "nose_bottom",
+      "points": [
+        [
+          125.9447731755424,
+          127.2189349112426
+        ]
+      ],
+      "group_id": null,
+      "shape_type": "point",
+      "flags": {}
+    },
+    {
+      "label": "mouth_left",
+      "points": [
+        [
+          78.60749506903352,
+          147.33727810650888
+        ]
+      ],
+      "group_id": null,
+      "shape_type": "point",
+      "flags": {}
+    },
+    {
+      "label": "mouth_right",
+      "points": [
+        [
+          182.55226824457594,
+          143.9842209072978
+        ]
+      ],
+      "group_id": null,
+      "shape_type": "point",
+      "flags": {}
+    }
+  ],
+  "imagePath": "landmark_face.jpg",
+  "imageData": null,
+  "imageHeight": 256,
+  "imageWidth": 256
+}
