@@ -8,7 +8,7 @@
 
 
 
-目前还在努力完善中~
+目前还在努力完善中，完善过程中可能会出现不少bug或缺陷，欢迎提意见、参与到完善中~
 
 
 
@@ -29,7 +29,7 @@
 - 模型适配边缘端处理。目前主要适配瑞星微硬件上的 npu 处理器。
 - 主要包含 图像分类、物体检测、图像分割、关键点定位 的神经网络模型。
 - 提供模型训练结果参考。
-- 提供常用模块，如 框型标注、关键点标注、分割图标注的数据增强等功能。
+- 提供常用模块，如 [框型标注]((https://github.com/EASY-EAI/EASY-EAI-NetHub/module_lib/image_process_tool/boundingbox_tools.py))、[关键点标注](https://github.com/EASY-EAI/EASY-EAI-NetHub/module_lib/image_process_tool/keypoint_tools.py)、[分割图标注](https://github.com/EASY-EAI/EASY-EAI-NetHub/module_lib/image_process_tool/pixel_label_tools.py)的数据增强等功能。
 
 
 
