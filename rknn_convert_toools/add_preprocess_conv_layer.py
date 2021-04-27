@@ -7,22 +7,25 @@ class preprocess_conv_layer(nn.Module):
     #   input_module 为输入模型，即为想要导出模型
     #   mean_value 的值可以是 [m1, m2, m3] 或 常数m
     #   std_value 的值可以是 [s1, s2, s3] 或 常数s
-    #   BGR2RGB的操作默认为首先执行，既替代的原有操作顺序为 BGR2RGB -> minus mean -> minus std (与rknn config 设置保持一致)
+    #   BGR2RGB的操作默认为首先执行，既替代的原有操作顺序为 
+    #       BGR2RGB -> minus mean -> minus std (与rknn config 设置保持一致) -> nhwc2nchw
     #
-    #   使用示例伪代码：
+    #   使用示例-伪代码：
     #       from add_preprocess_conv_layer import preprocess_conv_layer
     #       model_A = create_model()
     #       model_output = preprocess_co_nv_layer(model_A, mean_value, std_value, BGR2RGB)
     #       onnx_export(model_output)
     #
-    #   使用时：
-    #       rknn.config的均值设置为
-    #           mean_values = [[0, 0, 0]]
-    #           std_values = [[1, 1, 1]]
-    #           reorder_channel = '0 1 2'
-    #       或
-    #           channel_mean_value = '0 0 0 1'
-    #           reorder_channel = '0 1 2'
+    #   量化时：
+    #       rknn.config的中 channel_mean_value 、reorder_channel 均不赋值。
+    #
+    #   部署代码：
+    #       rknn_input 的属性
+    #           pass_through = 1
+    #
+    #   另外：
+    #       由于加入permute操作，c端输入为opencv mat(hwc格式)即可，无需在外部将hwc改成chw格式。
+    #
 
     def __init__(self, input_module, mean_value, std_value, BGR2RGB=False):
         super(preprocess_conv_layer, self).__init__()
@@ -34,7 +37,7 @@ class preprocess_conv_layer(nn.Module):
         assert len(mean_value) <= 3, 'mean_value should be int, or list with 3 element'
         assert len(std_value) <= 3, 'std_value should be int, or list with 3 element'
 
-        self.ininput_module = input_module
+        self.input_module = input_module
 
         with torch.no_grad():
             self.conv1 = nn.Conv2d(3, 3, (1, 1), groups=1, bias=True, stride=(1, 1))
@@ -59,5 +62,6 @@ class preprocess_conv_layer(nn.Module):
         # print(self.conv1.bias)
 
     def forward(self, x):
+        x = x.permute(0, 3, 1, 2)  # NHWC -> NCHW, apply for rknn_pass_through
         x = self.conv1(x)
         return self.input_module(x)
